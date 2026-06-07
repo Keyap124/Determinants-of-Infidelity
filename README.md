@@ -21,7 +21,7 @@ The analysis revealed that marital satisfaction is one of the strongest predicto
 | `Visuals for Determinants of Infidelity.html` | HTML version of the R Markdown output with the code and charts |
 | `affairs (2).xls` | Original Affairs dataset used for the econometric analysis |
 | `affairs_description (4).txt` | Description file explaining the dataset variables |
-| `README.md` | Provides an overview of the project, methodology, files, visualizations, and findings |
+
 
 ## Features
 

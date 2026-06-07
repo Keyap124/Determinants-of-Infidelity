@@ -1,0 +1,105 @@
+---
+title: "Visuals for Determinants of Infidelity"
+output: html_document
+date: "2026-06-01"
+---
+
+```{r}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+
+setwd("~/Desktop/econometrics")
+
+affairs <- read_xls("affairs (2).xls", col_names = FALSE)
+
+colnames(affairs) <- c(
+  "id", "male", "age", "yrsmarr", "kids", "relig", "educ", "occup",
+  "ratemarr", "naffairs", "affair", "vryhap", "hapavg", "avgmarr",
+  "unhap", "vryrel", "smerel", "slghtrel", "notrel"
+)
+
+affairs$affair <- ifelse(affairs$affair > 0, 1, 0)
+```
+
+# 1. Infidelity rate by marital satisfaction
+
+```{r}
+
+affairs %>%
+  group_by(ratemarr) %>%
+  summarise(affair_rate = mean(affair) * 100) %>%
+  ggplot(aes(x = factor(ratemarr), y = affair_rate)) +
+  geom_col() +
+  labs(
+    title = "Infidelity Rate by Marital Satisfaction",
+    x = "Marital Satisfaction Rating",
+    y = "Affair Rate (%)"
+  ) +
+  theme_minimal()
+
+ggsave("marital_satisfaction_affair_rate.png", width = 8, height = 5)
+```
+
+# 2. Infidelity rate by years married
+
+```{r}
+
+affairs %>%
+  group_by(yrsmarr) %>%
+  summarise(affair_rate = mean(affair) * 100) %>%
+  ggplot(aes(x = yrsmarr, y = affair_rate)) +
+  geom_col() +
+  labs(
+    title = "Infidelity Rate by Years Married",
+    x = "Years Married",
+    y = "Affair Rate (%)"
+  ) +
+  theme_minimal()
+
+ggsave("years_married_affair_rate.png", width = 8, height = 5)
+```
+
+# 3. Infidelity rate by religiosity
+
+```{r}
+affairs %>%
+  group_by(relig) %>%
+  summarise(affair_rate = mean(affair) * 100) %>%
+  ggplot(aes(x = factor(relig), y = affair_rate)) +
+  geom_col() +
+  labs(
+    title = "Infidelity Rate by Religiosity",
+    x = "Religiosity Level",
+    y = "Affair Rate (%)"
+  ) +
+  theme_minimal()
+
+ggsave("religiosity_affair_rate.png", width = 8, height = 5)
+```
+
+# 4. Average marginal effects chart
+
+```{r}
+marginal_effects <- data.frame(
+  variable = c("Age", "Education", "Kids", "Marital Satisfaction 2",
+               "Marital Satisfaction 3", "Marital Satisfaction 4",
+               "Marital Satisfaction 5", "Religiosity", "Years Married"),
+  ame = c(-0.0065, 0.0089, 0.0603, -0.0019,
+          -0.1775, -0.2342, -0.3078, -0.0536, 0.0149)
+)
+
+ggplot(marginal_effects, aes(x = reorder(variable, ame), y = ame)) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title = "Average Marginal Effects from Logit Model",
+    x = "Variable",
+    y = "Average Marginal Effect"
+  ) +
+  theme_minimal()
+
+ggsave("marginal_effects_chart.png", width = 8, height = 5)
+
+```
+

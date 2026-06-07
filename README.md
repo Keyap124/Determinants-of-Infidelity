@@ -90,19 +90,7 @@ The project also calculates and visualizes average marginal effects to better ex
 
 ## Visualizations
 
-The project includes several charts to support the analysis:
-
-* **Infidelity Rate by Marital Satisfaction**
-  Shows how affair rates change across marital satisfaction ratings.
-
-* **Infidelity Rate by Years Married**
-  Shows how affair rates vary based on the number of years married.
-
-* **Infidelity Rate by Religiosity**
-  Shows how affair rates differ across religiosity levels.
-
-* **Average Marginal Effects from Logit Model**
-  Shows which variables increase or decrease the predicted probability of infidelity.
+The project includes several charts to support the analysis
 
 ## Key Findings
 
@@ -111,22 +99,6 @@ The analysis found that marital satisfaction is a major predictor of infidelity.
 The results also showed that religiosity had a negative relationship with infidelity, meaning individuals with higher religiosity levels were less likely to report an affair. Years married had a positive relationship with infidelity, suggesting that longer marriages were associated with a higher probability of infidelity in this model.
 
 The average marginal effects showed that higher marital satisfaction categories had the strongest negative effects on the probability of having an affair, especially the highest satisfaction rating.
-
-## Limitations
-
-One limitation of this project is omitted variable bias. Factors such as income, emotional compatibility, communication quality, personality traits, and relationship history are not included in the dataset but may influence both marital satisfaction and infidelity.
-
-Another limitation is that the data is cross-sectional, meaning it only captures one point in time. Because of this, the analysis can identify relationships between variables but cannot fully prove causation.
-
-## Future Improvements
-
-* Add more control variables if a richer dataset is available
-* Use longitudinal data to better study relationship changes over time
-* Compare logit results with probit or linear probability models
-* Add predicted probability plots
-* Create an interactive dashboard for visual exploration
-* Include gender-based subgroup analysis
-* Explore possible interaction effects between marital satisfaction and years married
 
 ## Goal
 
